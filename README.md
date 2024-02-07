@@ -2,7 +2,7 @@
 
 ## Overview:
 
-This is an exmple from Coursera course "React Basics" is part of the Coursera course "Introduction to iOS Mobile Application Development."  
+This is an exmple from Coursera course "React Basics" .  
 You will learn how to use hooks in React components and understand the use-cases for the useState hook.  
 
 ## Description:  
