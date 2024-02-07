@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Hooks Exemple:  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview:
 
-## Available Scripts
+This is an exmple from Coursera course "React Basics" is part of the Coursera course "Introduction to iOS Mobile Application Development."  
+You will learn how to use hooks in React components and understand the use-cases for the useState hook.  
 
-In the project directory, you can run:
+## Description:  
+Let’s say you have a component with an input text field. The user can type into this text field.  
+The component needs to keep track of what the user types within this text field. You can add state and use the useState hook, to hold the string.  
+As the user keeps typing, the local state that holds the string needs to get updated with the latest text that has been typed.  
+Let's discuss the below example.  
 
-### `npm start`
+ ```bash
+    import { useState } from 'react';
+    
+    export default function InputComponent() { 
+      const [inputText, setText] = useState('hello'); 
+    
+      function handleChange(e) { 
+        setText(e.target.value); 
+      } 
+    
+      return ( 
+        <> 
+          <input value={inputText} onChange={handleChange} /> 
+          <p>You typed: {inputText}</p> 
+          <button onClick={() => setText('hello')}> 
+            Reset 
+          </button> 
+        </> 
+      ); 
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To do this, let's define a React component and call it InputComponent. This component renders three things:  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- An input text field.  
+- Any text that has been entered into the field.   
+- A Reset button to set the field back to its default state.   
+<img width="198" alt="Screenshot 2024-02-06 at 11 48 43 PM" src="https://github.com/SaidaDAGDOUG/hooks-React/assets/92460033/8d65d6c3-56e0-42af-9a23-d7677042b9d9">
 
-### `npm test`
+As the user starts typing within the text field, the current text that was typed is also displayed.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The state variable inputText and the setText method are used to set the current text that is typed. The useState hook is initialized at the beginning of the component.  
 
-### `npm run build`
+```bash
+    const[inputText, setText] = useState('hello');
+```
+By default, the inputText will be set to “hello”.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As the user types, the handleChange function, reads the latest input value from the browser’s input DOM element, and calls the setText function, to update the local state of inputText.  
+```bash
+   function handleChange(e) {
+    setText(e.target.value);
+};
+```
+Finally, clicking the reset button will update the inputText back to “hello”.   
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Isn’t this neat?  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Keep in mind that the inputText here is local state and is local to the InputComponent. This means that outside of this component, inputText is unavailable and unknown. In React, state is always referred to the local state of a component.  
+the useState hook that you just learned.  
+Hooks also come with a set of rules, that you need to follow while using them. This applies to all React hooks, including the useState hook that you just learned.  
+  - You can only call hooks at the top level of your component or your own hooks.   
+  - You cannot call hooks inside loops or conditions. 
+  - You can only call hooks from React functions, and not regular JavaScript functions. 
